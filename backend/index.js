@@ -11,7 +11,7 @@ server.use(express.json());
 async function startServer() {
   try {
     await conn();
-    server.use('/', routes);
+    server.use('/api', routes);
 
     server.listen(process.env.NODE_PORT, () => {
       console.log(`Node listening on port ${process.env.NODE_PORT}!`);

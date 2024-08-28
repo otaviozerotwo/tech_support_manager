@@ -1,14 +1,8 @@
 const router = require('express').Router();
-const userRouter = require('./userRoutes');
-const agentRouter = require('./agentRoutes');
-const clientRouter = require('./clientRoutes');
-const enterpriseRouter = require('./enterpriseRoutes');
+const contactRouter = require('./contactRoutes');
 const ticketRouter = require('./ticketRoutes');
 
-router.use('/', userRouter);
-router.use('/', agentRouter);
-router.use('/', clientRouter);
-router.use('/', enterpriseRouter);
+router.use('/', contactRouter);
 router.use('/', ticketRouter);
 
 module.exports = router;
