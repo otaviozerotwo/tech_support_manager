@@ -1,44 +1,23 @@
-import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { getContacts } from './src/services/contactService';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import ContactList from './src/screens/ContactListScreen';
+import CreateContact from './src/screens/CreateContactScreen';
+import TicketList from './src/screens/TicketListScreen';
+import CreateTicket from './src/screens/CreateTicketScreen';
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  const [contacts, setContacts] = useState([]);
-
-  useEffect(() => {
-    const fetchContacts = async () => {
-      const data = await getContacts();
-
-      if (data) {
-        setContacts(data);
-      }
-    };
-
-    fetchContacts();
-  }, []);
-
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={contacts}
-        keyExtractor={(item) => item._id}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.name}</Text>
-            <Text>{item.phoneNumber}</Text>
-            <Text>{item.enterprise}</Text>
-          </View>
-        )}
-      />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="ContactList">
+        <Stack.Screen name="ContactList" component={ContactList} options={{ title: 'Contacts' }} />
+        <Stack.Screen name="CreateContact" component={CreateContact} options={{ title: 'Create Contact' }} />
+        <Stack.Screen name="TicketList" component={TicketList} options={{ title: 'Tickets' }} />
+        <Stack.Screen name="CreateTicket" component={CreateTicket} options={{ title: 'Create Ticket' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 44,
-    marginLeft: 14
-  },
-});
+}
