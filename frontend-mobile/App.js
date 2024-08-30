@@ -1,10 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { Routes } from './src/routes';
+import BottomTabNavigator from './src/navigation/BottomTabNavigator';
 
 export default function App() {
   return(
     <NavigationContainer>
-      <Routes />
+      <BottomTabNavigator />
     </NavigationContainer>
   )
 };

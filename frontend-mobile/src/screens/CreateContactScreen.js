@@ -10,7 +10,7 @@ export function CreateContact ({ navigation }) {
   const handleSubmit = async () => {
     const contactData = { name, phoneNumber, enterprise };
     await createContact(contactData);
-    navigation.navigate('contactList');
+    navigation.navigate('ContactList');
   };
 
   return (

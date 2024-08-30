@@ -11,7 +11,7 @@ export function CreateTicket ({ navigation }) {
   const handleSubmit = async () => {
     const ticketData = { phoneNumber, enterprise, startTime, endTime };
     await createTicket(ticketData);
-    navigation.navigate('ticketList');
+    navigation.navigate('TicketList');
   };
 
   return (
@@ -29,6 +29,7 @@ export function CreateTicket ({ navigation }) {
       <TextInput value={endTime} onChangeText={setEndTime} />
 
       <Button title="Save Ticket" onPress={handleSubmit} />
+      <Button title="Back" onPress={() => navigation.navigate('TicketList')}e />
     </View>
   );
 };
