@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { View, TextInput, Button, Text } from 'react-native';
+import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
 import { createTicket } from '../services/ticketService';
 
-const CreateTicket = ({ navigation }) => {
+export function CreateTicket ({ navigation }) {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [enterprise, setEnterprise] = useState('');
   const [startTime, setStartTime] = useState('');
@@ -11,11 +11,11 @@ const CreateTicket = ({ navigation }) => {
   const handleSubmit = async () => {
     const ticketData = { phoneNumber, enterprise, startTime, endTime };
     await createTicket(ticketData);
-    navigation.navigate('TicketList');
+    navigation.navigate('ticketList');
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Phone Number</Text>
       <TextInput value={phoneNumber} onChangeText={setPhoneNumber} keyboardType="phone-pad" />
 
@@ -33,4 +33,13 @@ const CreateTicket = ({ navigation }) => {
   );
 };
 
-export default CreateTicket;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    marginTop: 44,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+});
+

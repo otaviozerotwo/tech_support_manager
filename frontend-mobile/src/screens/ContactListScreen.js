@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 import { getContacts } from '../services/contactService';
 
-const ContactList = ({ navigation }) => {
+export function ContactList ({ navigation }) {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
     const fetchContacts = async () => {
       const data = await getContacts();
+
+      // console.log(data);
 
       if (data) {
         setContacts(data);
@@ -31,7 +33,7 @@ const ContactList = ({ navigation }) => {
         )}
       />
 
-      <Button title="Add Contact" onPress={() => navigation.navigate('CreateContact')} />
+      <Button title="Add Contact" onPress={() => navigation.navigate('createContact')} />
     </View>
   );
 };
@@ -41,12 +43,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     marginTop: 44,
-    marginLeft: 14,
-    marginBottom: 14
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   contact: {
-    marginBottom: 14
+    marginTop: 44
   }
 });
 
-export default ContactList;
