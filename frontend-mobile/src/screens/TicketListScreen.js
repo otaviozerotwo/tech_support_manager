@@ -9,8 +9,6 @@ export function TicketList ({ navigation }) {
   useEffect(() => {
     const fetchTickets = async () => {
       const data = await getTickets();
-
-      // console.log('log tela:', data);
       
       if (data) {
         setTickets(data);

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
 import { createTicket } from '../services/ticketService';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export function CreateTicket ({ navigation }) {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -15,32 +16,43 @@ export function CreateTicket ({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Phone Number</Text>
-      <TextInput value={phoneNumber} onChangeText={setPhoneNumber} keyboardType="phone-pad" />
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Add Ticket</Text>
+      </View>
 
-      <Text>Enterprise</Text>
-      <TextInput value={enterprise} onChangeText={setEnterprise} />
+      <View style={styles.container}>
+        <Text>Phone Number</Text>
+        <TextInput value={phoneNumber} onChangeText={setPhoneNumber} keyboardType="phone-pad" />
 
-      <Text>Start Time</Text>
-      <TextInput value={startTime} onChangeText={setStartTime} />
+        <Text>Enterprise</Text>
+        <TextInput value={enterprise} onChangeText={setEnterprise} />
 
-      <Text>End Time</Text>
-      <TextInput value={endTime} onChangeText={setEndTime} />
+        <Text>Start Time</Text>
+        <TextInput value={startTime} onChangeText={setStartTime} />
 
-      <Button title="Save Ticket" onPress={handleSubmit} />
-      <Button title="Back" onPress={() => navigation.navigate('TicketList')}e />
-    </View>
+        <Text>End Time</Text>
+        <TextInput value={endTime} onChangeText={setEndTime} />
+
+        <Button title="Save Ticket" onPress={handleSubmit} />
+        <Button title="Back" onPress={() => navigation.navigate('TicketList')} />
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 44,
-    alignItems: 'center',
-    justifyContent: 'center'
+  header: {
+    backgroundColor: '#392DE9',
+    paddingTop: 58,
+    paddingBottom: 14,
+    paddingLeft: 14,
+    paddingRight: 14
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#FFF'
   },
 });
 

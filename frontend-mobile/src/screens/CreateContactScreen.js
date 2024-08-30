@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { createContact } from '../services/contactService';
 
 export function CreateContact ({ navigation }) {
@@ -14,28 +15,39 @@ export function CreateContact ({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Name</Text>
-      <TextInput value={name} onChangeText={setName} />
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Add Contact</Text>
+      </View>
 
-      <Text>Phone Number</Text>
-      <TextInput value={phoneNumber} onChangeText={setPhoneNumber} keyboardType="phone-pad" />
+      <View style={styles.container}>
+        <Text>Name</Text>
+        <TextInput value={name} onChangeText={setName} />
 
-      <Text>Enterprise</Text>
-      <TextInput value={enterprise} onChangeText={setEnterprise} />
+        <Text>Phone Number</Text>
+        <TextInput value={phoneNumber} onChangeText={setPhoneNumber} keyboardType="phone-pad" />
 
-      <Button title="Save Contact" onPress={handleSubmit} />
-    </View>
+        <Text>Enterprise</Text>
+        <TextInput value={enterprise} onChangeText={setEnterprise} />
+
+        <Button title="Save Contact" onPress={handleSubmit} />
+        <Button title="Back" onPress={() => navigation.navigate('ContactList')} />
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 44,
-    alignItems: 'center',
-    justifyContent: 'center'
+  header: {
+    backgroundColor: '#392DE9',
+    paddingTop: 58,
+    paddingBottom: 14,
+    paddingLeft: 14,
+    paddingRight: 14
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#FFF'
   },
 });
-
